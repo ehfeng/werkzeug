@@ -316,7 +316,8 @@ class DebuggedApplication(object):
                 is_trusted = bool(self.check_pin_trust(environ))
                 yield traceback.render_full(evalex=self.evalex,
                                             evalex_trusted=is_trusted,
-                                            secret=self.secret) \
+                                            secret=self.secret,
+                                            third_party_js=self.app.debugger_script) \
                     .encode('utf-8', 'replace')
 
             traceback.log(environ['wsgi.errors'])

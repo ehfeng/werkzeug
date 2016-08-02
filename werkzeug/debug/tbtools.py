@@ -85,6 +85,7 @@ FOOTER = u'''\
       </div>
     </div>
   </body>
+  %(third_party_js)s
 </html>
 '''
 
@@ -347,7 +348,7 @@ class Traceback(object):
         }
 
     def render_full(self, evalex=False, secret=None,
-                    evalex_trusted=True):
+                    evalex_trusted=True, third_party_js=None):
         """Render the Full HTML page with the traceback info."""
         exc = escape(self.exception)
         return PAGE_HTML % {
@@ -361,7 +362,8 @@ class Traceback(object):
             'plaintext':        self.plaintext,
             'plaintext_cs':     re.sub('-{2,}', '-', self.plaintext),
             'traceback_id':     self.id,
-            'secret':           secret
+            'secret':           secret,
+            'third_party_js':   third_party_js,
         }
 
     def generate_plaintext_traceback(self):
